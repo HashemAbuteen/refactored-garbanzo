@@ -1,10 +1,11 @@
+require('dotenv').config()
 const express = require('express');
 const { Configuration, OpenAIApi } = require("openai");
 
 const app = express();
 
 const configuration = new Configuration({
-    apiKey: myOpenAiKey,
+    apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
@@ -33,7 +34,7 @@ app.post('/generic-completion/:promt', async(req , res) => {
     if(!req.body.text){
         res.status(400).send("there is no text");
     }
-    const text = action +"\n" + req.body.text;
+    const text = action +": \n" + req.body.text;
     const response = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: text,
