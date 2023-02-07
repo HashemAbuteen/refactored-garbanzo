@@ -42,6 +42,7 @@ app.post('/generic-completion/:prompt', async(req , res) => {
         }
         ```
 3. Negative Test - Missing OpenAI API Key
+    Test the API without the OpenAI key
     - Input:
         ```
         {
@@ -52,17 +53,5 @@ app.post('/generic-completion/:prompt', async(req , res) => {
     - Expected Output: 
         ```
         500 Internal Server Error
-        ```
-4. Edge Test - Input text with maximum token limit (256)
-    - Input:
-        ```
-        {
-            "text": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog."
-        }
-        ```
-        Request URL: `/generic-completion/max-tokens-limit`
-    - Expected Output: 
-        ```
-        The text rephrased by OpenAI
         ```
 
