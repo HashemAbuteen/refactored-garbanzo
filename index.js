@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const { Configuration, OpenAIApi } = require("openai");
-
 const app = express();
 
 const configuration = new Configuration({
@@ -18,7 +17,7 @@ app.post('/generic-completion/:promt', async(req , res) => {
 
     if(!req.body.text){
         console.log("No text was provided in the request body");
-        return res.sendStatus(400);
+        return res.status(400).send({error: "The request body must include a 'text' property"});
     }
 
     if(!process.env.OPENAI_API_KEY) {
